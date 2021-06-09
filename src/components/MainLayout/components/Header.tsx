@@ -9,6 +9,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Cart from "components/MainLayout/components/Cart";
 import {Link} from 'react-router-dom';
+import { APP_NAME } from 'constants/config';
+import Logo from "../../../images/logo.png";
+import "./Header.css";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,10 +46,11 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar position="relative" className="app-header">
       <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          <Link className={classes.homeLink} to="/">My Store!</Link>
+        <Typography variant="h6" className={`${classes.title} app-header-title`}>
+          <Link className={classes.homeLink} to="/">{APP_NAME}</Link>
+          <img className="app-logo" src={Logo} />
         </Typography>
 
         {auth && (
@@ -82,6 +86,11 @@ export default function Header() {
         )}
         <Cart/>
       </Toolbar>
+      <div className="promo-container">
+        <div className="promo">
+          <h1>{APP_NAME}</h1>
+        </div>
+      </div>
     </AppBar>
   );
 }
